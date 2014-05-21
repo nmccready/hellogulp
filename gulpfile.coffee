@@ -21,7 +21,6 @@ gulp.task "scripts", ->
   .pipe(gulpif(/[.]coffee$/, coffeelint()))
   .pipe(gulpif(/[.]coffee$/, coffeelint.reporter()))
   .pipe(gulpif(/[.]coffee$/, coffee().on('error', gutil.log)))
-  # .pipe(gulp.src("src/*.js")) # gulp.src passes through input
   .pipe(order([
     "lib/js1.js"
     "lib/**/*.js"

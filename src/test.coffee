@@ -5,3 +5,4 @@ class A
 class HelloWorld extends A
   hi: ->
     "hello world"
+  hi2: ->

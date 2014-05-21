@@ -41,6 +41,8 @@ function hi4(){
       return "hello world";
     };
 
+    HelloWorld.prototype.hi2 = function() {};
+
     return HelloWorld;
 
   })(A);
