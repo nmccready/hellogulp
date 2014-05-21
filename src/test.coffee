@@ -1,3 +1,7 @@
-class HelloWorld
-  hi ->
-    alert("HI")
+class A
+  a: ->
+    "a"
+
+class HelloWorld extends A
+  hi: ->
+    "hello world"

@@ -1,18 +1,15 @@
 function test(){
-  alert('test2');
+  return 'test';
 }
 
 function hi2(){
-  var s = "hi";
-  return s;
+  return "hi2";
 }
 
 function hi3(){
-  var s = "hi";
-  return s;
+  return "hi3";
 }
 
 function hi4(){
-  var s = "hi";
-  return s;
+  return "hi4";
 }
