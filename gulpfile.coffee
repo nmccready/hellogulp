@@ -1,15 +1,17 @@
-gulp        = require("gulp")
-coffee      = require('gulp-coffee')
-jshint      = require("gulp-jshint")
-sass        = require("gulp-sass")
-concat      = require("gulp-concat")
-uglify      = require("gulp-uglify")
-rename      = require("gulp-rename")
-gutil       = require("gulp-util")
-clean       = require("gulp-clean")
-order       = require("gulp-order")
-gulpif      = require("gulp-if")
-coffeelint  = require("gulp-coffeelint")
+gulp         = require("gulp")
+coffee       = require('gulp-coffee')
+jshint       = require("gulp-jshint")
+sass         = require("gulp-sass")
+concat       = require("gulp-concat")
+uglify       = require("gulp-uglify")
+rename       = require("gulp-rename")
+gutil        = require("gulp-util")
+clean        = require("gulp-clean")
+order        = require("gulp-order")
+gulpif       = require("gulp-if")
+coffeelint   = require("gulp-coffeelint")
+serve        = require("gulp-serve")
+open         = require("gulp-open")
 
 gulp.task "sass", ->
   gulp.src("scss/*.scss").pipe(sass()).pipe gulp.dest("css")
@@ -42,4 +44,23 @@ gulp.task "clean", ->
   gulp.src('dist', read: false )
   .pipe(clean());
 
-gulp.task "default", ["sass","scripts", "watch"]
+gulp.task "serve-build", serve
+  root:[ "public","dist"]
+  port: 3000
+
+gulp.task "serve-prod", serve
+  root: ["public","dist"]
+  port: 80
+  middleware: (req, res) ->
+
+gulp.task "open-build", ->
+  options = {
+    url: "http://localhost:3000/all.js",
+    app: "Google Chrome" #osx , linux: google-chrome, windows: chrome
+  };
+  gulp.src("dist/*")
+  .pipe(open("", options));
+
+gulp.task "default", ["sass","scripts","watch"]
+
+gulp.task "serve", ["sass","scripts", "watch","serve-build","open-build"]

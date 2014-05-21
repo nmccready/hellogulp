@@ -19,7 +19,11 @@
     "gulp-order": "^1.0.6",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^0.7.1",
+    "gulp-serve": "^0.2.0",
     "gulp-uglify": "^0.3.0",
     "gulp-util": "^2.2.14"
+  },
+  "dependencies": {
+    "gulp-open": "^0.2.8"
   }
 }
