@@ -16,6 +16,7 @@ handlebars   = require('gulp-jstemplater')
 defineModule = require('gulp-define-module')
 declare = require('gulp-declare')
 size         = require('gulp-size')
+jasminePhantomJs = require('gulp-jasmine2-phantomjs')
 
 jsToMin = (fileName) ->
   fileName.replace('.','.min.')
@@ -34,6 +35,22 @@ myClean = (fileORDirName, doMin) ->
     c
   if doMin
     myClean fileORDirName.toMin()
+
+
+gulp.task "scripts_spec", ->
+  myClean("dist/all.js",true)
+  gulp.src(["spec/scripts/*","spec/scripts/**/*"])
+  .pipe(gulpif(/[.]js$/,jshint()))
+  .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
+  .pipe(gulpif(/[.]coffee$/, coffeelint()))
+  .pipe(gulpif(/[.]coffee$/, coffeelint.reporter()))
+  .pipe(gulpif(/[.]coffee$/, coffee().on('error', gutil.log)))
+  .pipe(concat("spec.js"))
+  .pipe(size( title:'spec.js'))
+  .pipe(gulp.dest("dist"))
+
+gulp.task "spec", ->
+  gulp.src("spec/specRunner.html").pipe(jasminePhantomJs())
 
 gulp.task "sass", ->
   myClean("dist/stylesheets.css",true)
