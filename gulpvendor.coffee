@@ -36,13 +36,13 @@ module.exports = (gulp, log, concat, size, minify, rename,myClean) ->
     .pipe(gulp.dest("dist"))
 
   gulp.task vendorProd + "_compile", ->
-      log "#{bang}Loading Vendor Tasks#{bang}"
-      myClean("dist/#{vendorDev.js().toMin()}")
-      gulp.src(devVendors)
-      .pipe(minify())
-      .pipe(concat(vendorDev.js().toMin()))
-      .pipe(size( title:vendorDev.js().toMin()))
-      .pipe(gulp.dest("dist"))
+    log "#{bang}Loading Vendor Tasks#{bang}"
+    myClean("dist/#{vendorDev.js().toMin()}")
+    gulp.src(devVendors)
+    .pipe(minify())
+    .pipe(concat(vendorDev.js().toMin()))
+    .pipe(size( title:vendorDev.js().toMin()))
+    .pipe(gulp.dest("dist"))
 
     log "#{bang}Out of Vendor Tasks#{bang}"
     

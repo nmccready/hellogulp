@@ -63,8 +63,8 @@ gulp.task "scripts", ->
   .pipe(gulpif(/[.]js$/,jshint()))
   .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
   .pipe(order [
-    "handlebarstemplates.coffee"
-    "baseobject.coffee"
+    "handlebars_templates.coffee"
+    "base_object.coffee"
     "namespace.coffee"
     "test.coffee"
     "crap.js"
@@ -84,6 +84,7 @@ gulp.task "watch", ["scripts"], ->
   gulp.watch "src/*", ["scripts"]
   gulp.watch "src/**/*", ["scripts"]
   gulp.watch "scss/*.scss", ["sass"]
+  gulp.watch "spec/**/*", ["spec_build","spec"]
 
 gulp.task "clean", ->
   gulp.src('dist', read: false )
@@ -117,8 +118,7 @@ _.values(jasmine.dependencyTasks), jasmine.runner, myClean)
 
 
 #base tasks
-gulp.task "default", ["sass","templates","scripts", vendors.develop,
-  spec.spec, "watch"]
+gulp.task "default", ["sass","templates","scripts", vendors.develop, spec.spec, "watch"]
 
 gulp.task "serve", ["default", vendors.develop,"serve-build","open-build"]
 

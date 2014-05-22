@@ -6,12 +6,12 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
   with gulp and plugins already loaded
   ###
 
-  buildOurSpecs = "scripts_spec"
+  buildOurSpecs = "spec_build"
   runSpecs = "spec"
 
   gulp.task buildOurSpecs, ->
     myClean("src/spec.js",true)
-    gulp.src(["spec/scripts/*","spec/scripts/**/*"])
+    gulp.src(["spec/spec_helpers/*","spec/scripts/**/*"])
     .pipe(gulpif(/[.]js$/,jshint()))
     .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
     .pipe(gulpif(/[.]coffee$/, coffeelint()))
