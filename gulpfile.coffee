@@ -36,22 +36,6 @@ myClean = (fileORDirName, doMin) ->
   if doMin
     myClean fileORDirName.toMin()
 
-
-gulp.task "scripts_spec", ->
-  myClean("dist/all.js",true)
-  gulp.src(["spec/scripts/*","spec/scripts/**/*"])
-  .pipe(gulpif(/[.]js$/,jshint()))
-  .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
-  .pipe(gulpif(/[.]coffee$/, coffeelint()))
-  .pipe(gulpif(/[.]coffee$/, coffeelint.reporter()))
-  .pipe(gulpif(/[.]coffee$/, coffee().on('error', gutil.log)))
-  .pipe(concat("spec.js"))
-  .pipe(size( title:'spec.js'))
-  .pipe(gulp.dest("dist"))
-
-gulp.task "spec", ->
-  gulp.src("spec/specRunner.html").pipe(jasminePhantomJs())
-
 gulp.task "sass", ->
   myClean("dist/stylesheets.css",true)
   gulp.src("src/stylesheets/*.scss")
@@ -122,9 +106,15 @@ gulp.task "open-build", ["watch"],->
   .pipe(open("", options))
 
 vendors = require('./gulpvendor.coffee')(gulp, gutil.log,
- concat, size, minify,rename, myClean)
+concat, size, minify,rename, myClean)
 
-gulp.task "default", ["sass","templates","scripts","watch"]
+jasmine = require('./gulpjasmine.coffee')(gulp, gutil.log,
+concat, size, minify,rename, myClean)
+
+spec = require('./gulpspec.coffee')(gulp, gutil.log,
+concat, size, minify,rename, jasmine.dependencyTasks, myClean)
+
+gulp.task "default", ["sass","templates","scripts", spec.spec, "watch"]
 gulp.task "serve", ["default", vendors.develop,
 "serve-build","open-build"]
 gulp.task "s", ["serve"]
