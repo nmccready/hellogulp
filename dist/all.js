@@ -142,27 +142,24 @@ function hi4(){
 }).call(this);
 
 (function() {
-  var init;
-
-  window.hbs = _.clone(jsTemplates, true);
-
-  init = function(obj) {
-    if (obj == null) {
-      obj = window.hbs;
-    }
-    return _.keys(obj).forEach(function(k) {
-      if (_.isString(obj[k])) {
-        return obj[k] = Handlebars.compile($(obj[k]).html());
-      } else if (_.isObject(obj[k])) {
-        return init(obj);
+  (function() {
+    var init;
+    window.hbs = _.clone(jsTemplates, true);
+    init = function(obj) {
+      if (obj == null) {
+        obj = window.hbs;
       }
-    });
-  };
-
-  init();
-
-  window.HandlebarsTemplates = hbs;
-
-  window.Handlebars.templates = hbs;
+      return _.keys(obj).forEach(function(k) {
+        if (_.isString(obj[k])) {
+          return obj[k] = Handlebars.compile($(obj[k]).html());
+        } else if (_.isObject(obj[k])) {
+          return init(obj);
+        }
+      });
+    };
+    init();
+    window.HandlebarsTemplates = hbs;
+    return window.Handlebars.templates = hbs;
+  })();
 
 }).call(this);

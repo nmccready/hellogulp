@@ -59,7 +59,7 @@ gulp.task "templates", ->
 
 gulp.task "scripts", ->
   myClean("dist/all.js",true)
-  gulp.src(["src/scripts/*","src/scripts/**/*"])
+  gulp.src(["src/scripts/**/*"])
   .pipe(gulpif(/[.]js$/,jshint()))
   .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
   .pipe(order [
@@ -115,7 +115,11 @@ spec = require('./gulpspec.coffee')(gulp, gutil.log,
 concat, size, minify,rename, jshint, coffee, coffeelint, gulpif
 _.values(jasmine.dependencyTasks), jasmine.runner, myClean)
 
-gulp.task "default", ["sass","templates","scripts", spec.spec, "watch"]
-gulp.task "serve", ["default", vendors.develop,
-"serve-build","open-build"]
+
+#base tasks
+gulp.task "default", ["sass","templates","scripts", vendors.develop,
+  spec.spec, "watch"]
+
+gulp.task "serve", ["default", vendors.develop,"serve-build","open-build"]
+
 gulp.task "s", ["serve"]

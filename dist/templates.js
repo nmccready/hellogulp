@@ -1,1 +1,0 @@
-var jsTemplates = {"crap":"<div class=\"crap\">{{crap}}</div>\n"};
