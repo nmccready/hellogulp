@@ -12,3 +12,12 @@ bower install
 ```
 
 Run gulp via coffeegulp, ```coffeegulp``` or shell script included ```cgulp```
+
+
+tasks:
+
+- serve or s
+- clean
+- vendor_develop
+- vendor_prod
+- default or "empty"
