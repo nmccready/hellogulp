@@ -21,10 +21,12 @@ module.exports = (gulp, log, concat, size, minify, rename,myClean) ->
     "scroll"
     "d3"
   ]
+
   devVendors = devVendors.map (v) ->
     v = "bower_components/*/#{v}".js()
     log v
     v
+
   gulp.task vendorDev, ->
     log "#{bang}Loading Vendor Tasks#{bang}"
     myClean("dist/#{vendorDev.js()}")
@@ -32,6 +34,7 @@ module.exports = (gulp, log, concat, size, minify, rename,myClean) ->
     .pipe(concat(vendorDev.js()))
     .pipe(size( title: vendorDev.js()))
     .pipe(gulp.dest("dist"))
+
   gulp.task vendorProd + "_compile", ->
       log "#{bang}Loading Vendor Tasks#{bang}"
       myClean("dist/#{vendorDev.js().toMin()}")
@@ -42,5 +45,6 @@ module.exports = (gulp, log, concat, size, minify, rename,myClean) ->
       .pipe(gulp.dest("dist"))
 
     log "#{bang}Out of Vendor Tasks#{bang}"
+    
   develop: vendorDev
   prod: vendorProd

@@ -1,72 +1,3 @@
-(function() {
-  var init;
-
-  window.hbs = _.clone(jsTemplates, true);
-
-  init = function(obj) {
-    if (obj == null) {
-      obj = window.hbs;
-    }
-    return _.keys(obj).forEach(function(k) {
-      if (_.isString(obj[k])) {
-        return obj[k] = Handlebars.compile($(obj[k]).html());
-      } else if (_.isObject(obj[k])) {
-        return init(obj);
-      }
-    });
-  };
-
-  init();
-
-  window.HandlebarsTemplates = hbs;
-
-  window.Handlebars.templates = hbs;
-
-}).call(this);
-
-(function() {
-  var baseObjectKeywords,
-    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-
-  baseObjectKeywords = ['extended', 'included'];
-
-  this.BaseObject = (function() {
-    function BaseObject() {}
-
-    BaseObject.extend = function(obj) {
-      var key, value, _ref;
-      for (key in obj) {
-        value = obj[key];
-        if (__indexOf.call(baseObjectKeywords, key) < 0) {
-          this[key] = value;
-        }
-      }
-      if ((_ref = obj.extended) != null) {
-        _ref.apply(0);
-      }
-      return this;
-    };
-
-    BaseObject.include = function(obj) {
-      var key, value, _ref;
-      for (key in obj) {
-        value = obj[key];
-        if (__indexOf.call(baseObjectKeywords, key) < 0) {
-          this.prototype[key] = value;
-        }
-      }
-      if ((_ref = obj.included) != null) {
-        _ref.apply(0);
-      }
-      return this;
-    };
-
-    return BaseObject;
-
-  })();
-
-}).call(this);
-
 
 /*
     Created to make namespaces safely without stomping and crushing
@@ -164,5 +95,74 @@ function hi4(){
     });
     return view.render();
   });
+
+}).call(this);
+
+(function() {
+  var baseObjectKeywords,
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+  baseObjectKeywords = ['extended', 'included'];
+
+  this.BaseObject = (function() {
+    function BaseObject() {}
+
+    BaseObject.extend = function(obj) {
+      var key, value, _ref;
+      for (key in obj) {
+        value = obj[key];
+        if (__indexOf.call(baseObjectKeywords, key) < 0) {
+          this[key] = value;
+        }
+      }
+      if ((_ref = obj.extended) != null) {
+        _ref.apply(0);
+      }
+      return this;
+    };
+
+    BaseObject.include = function(obj) {
+      var key, value, _ref;
+      for (key in obj) {
+        value = obj[key];
+        if (__indexOf.call(baseObjectKeywords, key) < 0) {
+          this.prototype[key] = value;
+        }
+      }
+      if ((_ref = obj.included) != null) {
+        _ref.apply(0);
+      }
+      return this;
+    };
+
+    return BaseObject;
+
+  })();
+
+}).call(this);
+
+(function() {
+  var init;
+
+  window.hbs = _.clone(jsTemplates, true);
+
+  init = function(obj) {
+    if (obj == null) {
+      obj = window.hbs;
+    }
+    return _.keys(obj).forEach(function(k) {
+      if (_.isString(obj[k])) {
+        return obj[k] = Handlebars.compile($(obj[k]).html());
+      } else if (_.isObject(obj[k])) {
+        return init(obj);
+      }
+    });
+  };
+
+  init();
+
+  window.HandlebarsTemplates = hbs;
+
+  window.Handlebars.templates = hbs;
 
 }).call(this);

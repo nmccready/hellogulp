@@ -1,3 +1,5 @@
+jasminePhantomJs = require('gulp-jasmine2-phantomjs')
+
 module.exports = (gulp, log, concat, size, minify, rename,myClean, bang = '!!!!!!!!!!') ->
   log "#{bang}Jasmine Setup#{bang}"
   ###
@@ -44,21 +46,7 @@ module.exports = (gulp, log, concat, size, minify, rename,myClean, bang = '!!!!!
     .pipe(size())
     .pipe(gulp.dest("dist"))
 
-
-    gulp.task "scripts_spec", ->
-      myClean("src/spec.js",true)
-      gulp.src(["spec/scripts/*","spec/scripts/**/*"])
-      .pipe(gulpif(/[.]js$/,jshint()))
-      .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
-      .pipe(gulpif(/[.]coffee$/, coffeelint()))
-      .pipe(gulpif(/[.]coffee$/, coffeelint.reporter()))
-      .pipe(gulpif(/[.]coffee$/, coffee().on('error', gutil.log)))
-      .pipe(concat("spec.js"))
-      .pipe(size( title:'spec.js'))
-      .pipe(gulp.dest("dist"))
-
-    gulp.task "spec", ->
-      gulp.src("spec/specRunner.html").pipe(jasminePhantomJs())
   spec: jasmine
   dependencies: dependencies
   dependencyTasks: dependencyTasks
+  runner: jasminePhantomJs

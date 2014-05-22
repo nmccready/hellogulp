@@ -1,3 +1,4 @@
+_            = require('./node_modules/underscore/underscore-min')
 gulp         = require("gulp")
 coffee       = require('gulp-coffee')
 jshint       = require("gulp-jshint")
@@ -14,9 +15,8 @@ serve        = require("gulp-serve")
 open         = require("gulp-open")
 handlebars   = require('gulp-jstemplater')
 defineModule = require('gulp-define-module')
-declare = require('gulp-declare')
+declare      = require('gulp-declare')
 size         = require('gulp-size')
-jasminePhantomJs = require('gulp-jasmine2-phantomjs')
 
 jsToMin = (fileName) ->
   fileName.replace('.','.min.')
@@ -112,7 +112,8 @@ jasmine = require('./gulpjasmine.coffee')(gulp, gutil.log,
 concat, size, minify,rename, myClean)
 
 spec = require('./gulpspec.coffee')(gulp, gutil.log,
-concat, size, minify,rename, jasmine.dependencyTasks, myClean)
+concat, size, minify,rename, jshint, coffee, coffeelint, gulpif
+_.values(jasmine.dependencyTasks), jasmine.runner, myClean)
 
 gulp.task "default", ["sass","templates","scripts", spec.spec, "watch"]
 gulp.task "serve", ["default", vendors.develop,
