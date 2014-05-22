@@ -3,7 +3,7 @@ coffee       = require('gulp-coffee')
 jshint       = require("gulp-jshint")
 sass         = require("gulp-sass")
 concat       = require("gulp-concat")
-uglify       = require("gulp-uglify")
+minify       = require("gulp-uglify")
 rename       = require("gulp-rename")
 gutil        = require("gulp-util")
 clean        = require("gulp-clean")
@@ -12,8 +12,9 @@ gulpif       = require("gulp-if")
 coffeelint   = require("gulp-coffeelint")
 serve        = require("gulp-serve")
 open         = require("gulp-open")
-handlebars   = require('gulp-handlebars')
+handlebars   = require('gulp-jstemplater')
 defineModule = require('gulp-define-module')
+declare = require('gulp-declare')
 size         = require('gulp-size')
 
 jsToMin = (fileName) ->
@@ -46,34 +47,34 @@ gulp.task "sass", ->
 gulp.task "templates", ->
   myClean("dist/templates.js",true)
   gulp.src(['src/templates/*.hbs'])
-  .pipe(handlebars())
-  .pipe(defineModule('plain'))
+  .pipe( handlebars  "templates.js", variable: "jsTemplates" )
   .pipe(rename("templates.js"))
   .pipe(size( title:'templates.js'))
   .pipe(gulp.dest('dist'))
-  .pipe(uglify())
+  .pipe(minify())
   .pipe(rename("templates.min.js"))
   .pipe(size( title:'templates.min.js'))
   .pipe(gulp.dest("dist"))
 
 gulp.task "scripts", ->
   myClean("dist/all.js",true)
-  gulp.src("src/scripts/*")
+  gulp.src(["src/scripts/*","src/scripts/**/*"])
   .pipe(gulpif(/[.]js$/,jshint()))
   .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
+  .pipe(order [
+    "handlebarstemplates.coffee"
+    "baseobject.coffee"
+    "namespace.coffee"
+    "test.coffee"
+    "crap.js"
+    "views/*.coffee"])
   .pipe(gulpif(/[.]coffee$/, coffeelint()))
   .pipe(gulpif(/[.]coffee$/, coffeelint.reporter()))
   .pipe(gulpif(/[.]coffee$/, coffee().on('error', gutil.log)))
-  .pipe(order([
-    "lib/js1.js"
-    "lib/**/*.js"
-    "src/coffee1.js"
-    "src/**/*.js"
-  ]))
   .pipe(concat("all.js"))
   .pipe(size( title:'all.js'))
   .pipe(gulp.dest("dist"))
-  .pipe(uglify())
+  .pipe(minify())
   .pipe(rename("all.min.js"))
   .pipe(size( title:'all.min.js'))
   .pipe(gulp.dest("dist"))
@@ -97,14 +98,16 @@ gulp.task "serve-prod", serve
   middleware: (req, res) ->
 
 gulp.task "open-build", ["watch"],->
-  options = {
-    url: "http://localhost:3000/index.html",
+  options =
+    url: "http://localhost:3000/index.html"
     app: "Google Chrome" #osx , linux: google-chrome, windows: chrome
-  };
-  gulp.src("dist/*")
-  .pipe(open("", options));
+  gulp.src("dist/all.js")
+  .pipe(open("", options))
 
-vendors = require('./gulpvendor.coffee')(gulp, gutil.log, concat, size, myClean)
+vendors = require('./gulpvendor.coffee')(gulp, gutil.log,
+ concat, size, minify,rename, myClean)
 
-gulp.task "default", ["clean","sass","templates","scripts","watch"]
-gulp.task "serve", ["default", vendors.develop,"serve-build","open-build"]
+gulp.task "default", ["sass","templates","scripts","watch"]
+gulp.task "serve", ["default", vendors.develop,
+"serve-build","open-build"]
+gulp.task "s", ["serve"]

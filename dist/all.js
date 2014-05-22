@@ -1,18 +1,95 @@
-function test(){
-  return 'test';
-}
+(function() {
+  var init;
 
-function hi2(){
-  return "hi2";
-}
+  window.HandlebarsTemplates = _.clone(jsTemplates, true);
 
-function hi3(){
-  return "hi3";
-}
+  init = function(obj) {
+    if (obj == null) {
+      obj = window.HandlebarsTemplates;
+    }
+    return _.keys(obj).forEach(function(k) {
+      if (_.isString(obj[k])) {
+        return obj[k] = Handlebars.compile(obj[k]);
+      } else if (_.isObject(obj[k])) {
+        return init(obj);
+      }
+    });
+  };
 
-function hi4(){
-  return "hi4";
-}
+  init();
+
+}).call(this);
+
+(function() {
+  var baseObjectKeywords,
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+  baseObjectKeywords = ['extended', 'included'];
+
+  this.BaseObject = (function() {
+    function BaseObject() {}
+
+    BaseObject.extend = function(obj) {
+      var key, value, _ref;
+      for (key in obj) {
+        value = obj[key];
+        if (__indexOf.call(baseObjectKeywords, key) < 0) {
+          this[key] = value;
+        }
+      }
+      if ((_ref = obj.extended) != null) {
+        _ref.apply(0);
+      }
+      return this;
+    };
+
+    BaseObject.include = function(obj) {
+      var key, value, _ref;
+      for (key in obj) {
+        value = obj[key];
+        if (__indexOf.call(baseObjectKeywords, key) < 0) {
+          this.prototype[key] = value;
+        }
+      }
+      if ((_ref = obj.included) != null) {
+        _ref.apply(0);
+      }
+      return this;
+    };
+
+    return BaseObject;
+
+  })();
+
+}).call(this);
+
+
+/*
+    Created to make namespaces safely without stomping and crushing
+    other namespaces and or objects
+    (taken/modified from stack overflow)
+    author: Nick McCready
+ */
+
+(function() {
+  this.namespace = function(names, fn) {
+    var space, _name;
+    if (fn == null) {
+      fn = function() {};
+    }
+    if (typeof names === 'string') {
+      names = names.split('.');
+    }
+    space = this[_name = names.shift()] || (this[_name] = {});
+    space.namespace || (space.namespace = this.namespace);
+    if (names.length) {
+      return space.namespace(names, fn);
+    } else {
+      return fn.call(space);
+    }
+  };
+
+}).call(this);
 
 (function() {
   var A, HelloWorld,
@@ -46,5 +123,42 @@ function hi4(){
     return HelloWorld;
 
   })(A);
+
+}).call(this);
+
+function test(){
+  return 'test';
+}
+
+function hi2(){
+  return "hi2";
+}
+
+function hi3(){
+  return "hi3";
+}
+
+function hi4(){
+  return "hi4";
+}
+
+(function() {
+  this.namespace("app.views");
+
+  app.views.Main = Marionette.ItemView.extend({
+    template: Handlebars.compile($("<div>{{crap}}</div>\n").html())
+  });
+
+  $(function() {
+    var model, view;
+    model = new Backbone.Model({
+      crap: "wow some crap!"
+    });
+    view = new app.views.Main({
+      el: $("#main"),
+      model: model
+    });
+    return view.render();
+  });
 
 }).call(this);
