@@ -1,15 +1,15 @@
 (function() {
   var init;
 
-  window.HandlebarsTemplates = _.clone(jsTemplates, true);
+  window.hbs = _.clone(jsTemplates, true);
 
   init = function(obj) {
     if (obj == null) {
-      obj = window.HandlebarsTemplates;
+      obj = window.hbs;
     }
     return _.keys(obj).forEach(function(k) {
       if (_.isString(obj[k])) {
-        return obj[k] = Handlebars.compile(obj[k]);
+        return obj[k] = Handlebars.compile($(obj[k]).html());
       } else if (_.isObject(obj[k])) {
         return init(obj);
       }
@@ -17,6 +17,10 @@
   };
 
   init();
+
+  window.HandlebarsTemplates = hbs;
+
+  window.Handlebars.templates = hbs;
 
 }).call(this);
 
@@ -146,13 +150,13 @@ function hi4(){
   this.namespace("app.views");
 
   app.views.Main = Marionette.ItemView.extend({
-    template: Handlebars.compile($("<div>{{crap}}</div>\n").html())
+    template: hbs.crap
   });
 
   $(function() {
     var model, view;
     model = new Backbone.Model({
-      crap: "wow some crap!"
+      crap: "wow some crap!!!"
     });
     view = new app.views.Main({
       el: $("#main"),
