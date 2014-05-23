@@ -118,7 +118,7 @@ _.values(jasmine.dependencyTasks), jasmine.runner, myClean)
 
 
 #base tasks
-gulp.task "default", ["sass","templates","scripts", vendors.develop, spec.spec, "watch"]
+gulp.task "default", ["sass","templates","scripts", vendors.develop, "watch", spec.spec]
 
 gulp.task "serve", ["default", vendors.develop,"serve-build","open-build"]
 
