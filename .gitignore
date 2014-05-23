@@ -14,3 +14,4 @@ app/components
 *.iml
 /bower_components
 *.xml
+/dist
