@@ -27,8 +27,9 @@ module.exports = (gulp, log, concat, size, minify, rename,myClean, bang = '!!!!!
     v = "bower_components/#{jasmine}/lib/jasmine-core/#{v}".js()
     log v
     v
+  bowerJasmineFiles.push "bower_components/#{jasmine}/lib/jasmine-core/jasmine.css"
   bowerJasmineFiles.push "bower_components/#{jasmine2JUnit}/boot.js"
-  
+
   log "#{bang} BEGIN: TASK: #{dependencyTasks[jasmine]}#{bang}"
   gulp.task dependencyTasks[jasmine], ->
     log "#{bang}Loading #{dependencyTasks[jasmine]}#{bang}"

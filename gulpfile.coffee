@@ -91,7 +91,7 @@ gulp.task "clean", ->
   .pipe clean()
 
 gulp.task "serve-build", serve
-  root:[ "public","dist"]
+  root:["public","dist", "spec"]
   port: 3000
 
 gulp.task "serve-prod", serve

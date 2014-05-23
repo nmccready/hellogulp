@@ -29,6 +29,9 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
   log "#{bang}End:Spec dependencies#{bang}"
 
   gulp.task runSpecs, dependencies, ->
-    gulp.src("./spec/spec_runner.html").pipe(runner())
+    gulp.src("spec/spec_runner.html")
+    .pipe(gulp.dest("dist"))
+
+    gulp.src("dist/spec_runner.html").pipe(runner())
 
   spec: "spec"
