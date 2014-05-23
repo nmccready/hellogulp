@@ -21,6 +21,17 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
     .pipe(size( title:'spec.js'))
     .pipe(gulp.dest("dist"))
 
+    #copy spec fixtures to dist so Chrome and PhantomJS work
+    # if this is left to just open / serve then this only works with chrome
+    gulp.src("spec/fixtures/**")
+    .pipe(gulpif(/[.]js$/,jshint()))
+    .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
+    .pipe(gulpif(/[.]coffee$/, coffeelint()))
+    .pipe(gulpif(/[.]coffee$/, coffeelint.reporter()))
+    .pipe(gulpif(/[.]coffee$/, coffee().on('error', log)))
+    .pipe(size( title:'spec.js'))
+    .pipe(gulp.dest("dist/fixtures"))
+
   dependencies = if dependencyTasks? then [buildOurSpecs].concat(dependencyTasks) else [buildOurSpecs]
 
   log "#{bang}BEGIN:Spec dependencies#{bang}"

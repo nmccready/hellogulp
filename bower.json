@@ -29,6 +29,7 @@
     "highstock-release": "1.3.10",
     "underscore.string": "~2.3.3",
     "jasmine": "~2.0.0",
-    "jasmine2-junit": "*"
+    "jasmine2-junit": "*",
+    "jasmine-jquery": "~2.0.3"
   }
 }

@@ -91,7 +91,7 @@ gulp.task "clean", ->
   .pipe clean()
 
 gulp.task "serve-build", serve
-  root:["public","dist", "spec"]
+  root:["public","dist"]
   port: 3000
 
 gulp.task "serve-prod", serve
@@ -110,7 +110,7 @@ vendors = require('./gulpvendor.coffee')(gulp, gutil.log,
 concat, size, minify,rename, myClean)
 
 jasmine = require('./gulpjasmine.coffee')(gulp, gutil.log,
-concat, size, minify,rename, myClean)
+concat, size, minify,rename, coffee, gulpif, myClean)
 
 spec = require('./gulpspec.coffee')(gulp, gutil.log,
 concat, size, minify,rename, jshint, coffee, coffeelint, gulpif

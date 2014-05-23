@@ -18,7 +18,18 @@
   <script src="jasmine2-junit.js"></script>
   <!-- This boot.js is a modified version of Jasmine's default boot.js! -->
   <script src="boot.js"></script>
+  <script src="console.js"></script>
   <link rel="stylesheet" type="text/css" href="stylesheets.css">
+  <script src="jasmine-jquery.js"></script>
+  <script src="jasmine-jquery-overrides.js"></script>
+  <script src="jasminerice.js"></script>
+
+  <script>
+    jasmine.getFixtures().fixturesPath = 'fixtures';
+    jasmine.getStyleFixtures().fixturesPath = 'fixtures';
+    jasmine.getJSONFixtures().fixturesPath = 'fixtures/json';
+  </script>
+
   <!-- Include your spec files here -->
   <script src="spec.js"></script>
   </head>

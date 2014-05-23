@@ -1,3 +1,3 @@
 beforeEach ->
-  loadFixtures("container")
+  loadFixtures("container.html")
   @fixture = $ "#container"

@@ -1,6 +1,6 @@
 (function() {
   beforeEach(function() {
-    loadFixtures("container");
+    loadFixtures("container.html");
     return this.fixture = $("#container");
   });
 
@@ -10,7 +10,7 @@
   describe('app.views.Main', function() {
     beforeEach(function() {
       var json;
-      json = loadJSONFixtures('main').main;
+      json = loadJSONFixtures('main.json').main;
       this.testCtor = app.views.Main;
       this.subject = new this.testCtor({
         el: this.fixture,
