@@ -29,6 +29,7 @@
     "gulp-size": "^0.3.1",
     "gulp-uglify": "^0.3.0",
     "gulp-util": "^2.2.14",
+    "gulp-jasmine": "https://github.com/nmccready/gulp-jasmine/archive/jasmine-npm.tar.gz",
     "underscore": "1.6.0"
   },
   "dependencies": {

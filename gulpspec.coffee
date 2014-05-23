@@ -1,4 +1,5 @@
 istanbul = require('gulp-istanbul')
+gulp_jasmine = require('gulp-jasmine')
 
 module.exports = (gulp, log, concat, size, minify, rename, jshint, coffee,
 coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
@@ -51,11 +52,25 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
     # Covering files
     gulp.src("dist/all.js")
     .pipe(istanbul()).on "finish", ->
-      gulp.src("spec/spec_runner.html")
-      .pipe(gulp.dest("dist"))
-      gulp.src("dist/spec_runner.html")
-      .pipe(runner())
+      gulp.src([
+        "vendor_develop.js"
+        "templates.js"
+        "all.js"
+        "jasmine-jquery.js"
+        "jasmine-jquery-overrides.js"
+        "jasminerice.js"
+        "fixtures/**/*"
+        "spec.js"].map (f) -> "dist/#{f}")
+      .pipe(gulp_jasmine())
       # Creating the reports after tests runned
       .pipe(istanbul.writeReports())
+
+    gulp.src("coverage/**/*")
+    .pipe(gulp.dest("dist/coverage"))
+    #duplicating since lcov-report is not being resolved by browser
+    gulp.src("dist/coverage/lcov-report/**")
+    .pipe gulp.dest("dist/coverage/report")
+
+
 
   spec: "spec"

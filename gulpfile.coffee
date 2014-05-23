@@ -35,6 +35,7 @@ myClean = (fileORDirName, doMin) ->
     c
   if doMin
     myClean fileORDirName.toMin()
+  clean
 
 gulp.task "sass", ->
   myClean("dist/stylesheets.css",true)
