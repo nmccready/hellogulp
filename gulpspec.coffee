@@ -1,3 +1,5 @@
+istanbul = require('gulp-istanbul')
+
 module.exports = (gulp, log, concat, size, minify, rename, jshint, coffee,
 coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
   log "#{bang}Spec Task Setup#{bang}"
@@ -42,7 +44,18 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
   gulp.task runSpecs, dependencies, ->
     gulp.src("spec/spec_runner.html")
     .pipe(gulp.dest("dist"))
+    gulp.src("dist/spec_runner.html")
+    .pipe(runner())
 
-    gulp.src("dist/spec_runner.html").pipe(runner())
+  gulp.task "spec_cover", dependencies, ->
+    # Covering files
+    gulp.src("dist/all.js")
+    .pipe(istanbul()).on "finish", ->
+      gulp.src("spec/spec_runner.html")
+      .pipe(gulp.dest("dist"))
+      gulp.src("dist/spec_runner.html")
+      .pipe(runner())
+      # Creating the reports after tests runned
+      .pipe(istanbul.writeReports())
 
   spec: "spec"

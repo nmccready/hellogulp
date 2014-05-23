@@ -18,6 +18,7 @@
     "gulp-define-module": "^0.1.1",
     "gulp-handlebars": "^2.1.0",
     "gulp-if": "^1.2.0",
+    "gulp-istanbul": "^0.2.0",
     "gulp-jasmine2-phantomjs": "0.0.3",
     "gulp-jshint": "^1.6.1",
     "gulp-jstemplater": "0.0.3",
