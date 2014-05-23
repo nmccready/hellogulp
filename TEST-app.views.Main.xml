@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite tests="1" errors="0" failures="1" time="0.002" timestamp="2014-05-22T21:50:51">
+		<testcase classname="suite1" name="constructor - exists" time="0.002">
+			<failure type="" message="ReferenceError: Can&amp;apos;t find variable: loadFixtures in file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/spec.js (line 3)">
+ReferenceError: Can&amp;apos;t find variable: loadFixtures
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/spec.js:3
+    at attemptSync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1510)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1498
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:309
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1708
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1696
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1708
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1696
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:541
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:548
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/boot.js:172			</failure>
+			<failure type="" message="ReferenceError: Can&amp;apos;t find variable: loadJSONFixtures in file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/spec.js (line 13)">
+ReferenceError: Can&amp;apos;t find variable: loadJSONFixtures
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/spec.js:13
+    at attemptSync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1510)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1498
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:309
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1708
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1696
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1708
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1696
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:541
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:548
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/boot.js:172			</failure>
+			<failure type="toBeDefined" message="Expected undefined to be defined.">
+Error: Expected undefined to be defined.
+    at stack (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1293)
+    at buildExpectationResult (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1270)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:484
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:260
+    at addExpectationResult (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:442)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1216
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/spec.js:25
+    at attemptSync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1510)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1498
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:309
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1708
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1696
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1708
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1696
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:541
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:548
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/boot.js:172			</failure>
+			<failure type="" message="TypeError: &amp;apos;undefined&amp;apos; is not an object (evaluating &amp;apos;this.subject.close&amp;apos;) in file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/spec.js (line 22)">
+TypeError: &amp;apos;undefined&amp;apos; is not an object (evaluating &amp;apos;this.subject.close&amp;apos;)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/spec.js:22
+    at attemptSync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1510)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1498
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:309
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1708
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1696
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1708
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1696
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:541
+    at attemptAsync (file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1520)
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1496
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:1485
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:518
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/jasmine.js:548
+    at file:///Users/nick.mccready/Development/github/nmccready/mygulp/dist/boot.js:172			</failure>
+		</testcase>
+	</testsuite>
+</testsuites>
+
