@@ -1,11 +1,11 @@
 {
   "name": "rails2gulp",
   "version": "0.0.0",
-  "homepage": "https://github.com/nmccready/hellogulp",
+  "homepage": "https://github.com/nmccready/rails2gulp",
   "authors": [
     "nick.mccready <nmccready@gmail.com>"
   ],
-  "description": "messing w/ gulp",
+  "description": "Projects purpose is to be a rails replacement as an asset pipeline with less opinions",
   "main": "all.js",
   "license": "MIT",
   "private": true,

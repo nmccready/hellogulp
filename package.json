@@ -1,8 +1,7 @@
 {
   "name": "rails2gulp",
   "version": "0.0.0",
-  "description": "Projects purpose is to be a rails replacement as
-  an asset pipeline with less opinions",
+  "description": "Projects purpose is to be a rails replacement as an asset pipeline with less opinions",
   "main": "index.js",
   "scripts": {
     "test": "spec"
