@@ -10,7 +10,7 @@ app/components
 /nbproject
 .idea
 .grunt
-_SpecRunner.html
 /spec/coverage
 *.iml
 /bower_components
+*.xml
