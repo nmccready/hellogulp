@@ -26,14 +26,14 @@ myClean, bang = '!!!!!!!!!!') ->
     "jasmine-html"
   ]
   bowerJasmineFiles = jasmineFiles.map (v) ->
-    v = "bower_components/#{jasmine}/lib/jasmine-core/#{v}".js()
+    v = "app/components/#{jasmine}/lib/jasmine-core/#{v}".js()
     log v
     v
-  bowerJasmineFiles.push "bower_components/#{jasmine}/lib/jasmine-core/jasmine.css"
-  bowerJasmineFiles.push "bower_components/#{jasmine2JUnit}/boot.js"
-  bowerJasmineFiles.push "bower_components/#{jasmine}/lib/console/console.js"
+  bowerJasmineFiles.push "app/components/#{jasmine}/lib/jasmine-core/jasmine.css"
+  bowerJasmineFiles.push "app/components/#{jasmine2JUnit}/boot.js"
+  bowerJasmineFiles.push "app/components/#{jasmine}/lib/console/console.js"
   #support fixtures
-  bowerJasmineFiles.push "bower_components/jasmine-jquery/lib/jasmine-jquery.js"
+  bowerJasmineFiles.push "app/components/jasmine-jquery/lib/jasmine-jquery.js"
   bowerJasmineFiles.push "lib/jasmine*"
 
   log "#{bang} BEGIN: TASK: #{dependencyTasks[jasmine]}#{bang}"
@@ -51,7 +51,7 @@ myClean, bang = '!!!!!!!!!!') ->
   gulp.task dependencyTasks[jasmine2JUnit], ->
     log "#{bang}Loading #{dependencyTasks[jasmine2JUnit]}#{bang}"
     myClean("dist/#{jasmine2JUnit.js()}")
-    gulp.src("bower_components/#{jasmine2JUnit}/#{jasmine2JUnit.js()}")
+    gulp.src("app/components/#{jasmine2JUnit}/#{jasmine2JUnit.js()}")
     .pipe(size())
     .pipe(gulp.dest("dist"))
 

@@ -23,7 +23,7 @@ module.exports = (gulp, log, concat, size, minify, rename,myClean) ->
   ]
 
   devVendors = devVendors.map (v) ->
-    v = "bower_components/*/#{v}".js()
+    v = "app/components/*/#{v}".js()
     log v
     v
 
@@ -45,6 +45,6 @@ module.exports = (gulp, log, concat, size, minify, rename,myClean) ->
     .pipe(gulp.dest("dist"))
 
     log "#{bang}Out of Vendor Tasks#{bang}"
-    
+
   develop: vendorDev
   prod: vendorProd

@@ -39,7 +39,7 @@ myClean = (fileORDirName, doMin) ->
 
 gulp.task "sass", ->
   myClean("dist/stylesheets.css",true)
-  gulp.src("src/stylesheets/*.scss")
+  gulp.src("app/assets/stylesheets/*.scss")
   .pipe(sass().on("error", gutil.log))
   .pipe(concat("stylesheets.css"))
   .pipe(size( title:'stylesheets.css'))
@@ -48,7 +48,7 @@ gulp.task "sass", ->
 
 gulp.task "templates", ->
   myClean("dist/templates.js",true)
-  gulp.src(['src/templates/*.hbs'])
+  gulp.src(['app/assets/templates/*.hbs'])
   .pipe( handlebars  "templates.js", variable: "jsTemplates" )
   .pipe(rename("templates.js"))
   .pipe(size( title:'templates.js'))
@@ -60,7 +60,7 @@ gulp.task "templates", ->
 
 gulp.task "scripts", ->
   myClean("dist/all.js",true)
-  gulp.src(["src/scripts/**/*"])
+  gulp.src(["app/assets/scripts/**/*"])
   .pipe(gulpif(/[.]js$/,jshint()))
   .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
   .pipe(order [
@@ -82,8 +82,8 @@ gulp.task "scripts", ->
   .pipe(gulp.dest("dist"))
 
 gulp.task "watch", ["scripts"], ->
-  gulp.watch "src/*", ["scripts"]
-  gulp.watch "src/**/*", ["scripts"]
+  gulp.watch "app/assets/*", ["scripts"]
+  gulp.watch "app/assets/**/*", ["scripts"]
   gulp.watch "scss/*.scss", ["sass"]
   gulp.watch "spec/**/*", ["spec_build","spec"]
 

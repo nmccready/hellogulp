@@ -14,7 +14,7 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
 
   gulp.task buildOurSpecs, ->
     myClean("src/spec.js",true)
-    gulp.src(["spec/spec_helpers/*","spec/scripts/**/*"])
+    gulp.src(["app/spec/spec_helpers/*","app/spec/scripts/**/*"])
     .pipe(gulpif(/[.]js$/,jshint()))
     .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
     .pipe(gulpif(/[.]coffee$/, coffeelint()))
@@ -26,7 +26,7 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
 
     #copy spec fixtures to dist so Chrome and PhantomJS work
     # if this is left to just open / serve then this only works with chrome
-    gulp.src("spec/fixtures/**")
+    gulp.src("app/spec/fixtures/**")
     .pipe(gulpif(/[.]js$/,jshint()))
     .pipe(gulpif(/[.]js$/,jshint.reporter("default")))
     .pipe(gulpif(/[.]coffee$/, coffeelint()))
@@ -43,7 +43,7 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
   log "#{bang}End:Spec dependencies#{bang}"
 
   gulp.task runSpecs, dependencies, ->
-    gulp.src("spec/spec_runner.html")
+    gulp.src("app/spec/spec_runner.html")
     .pipe(gulp.dest("dist"))
     gulp.src("dist/spec_runner.html")
     .pipe(runner())
@@ -52,18 +52,12 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
     # Covering files
     gulp.src("dist/all.js")
     .pipe(istanbul()).on "finish", ->
-      gulp.src([
-        "vendor_develop.js"
-        "templates.js"
-        "all.js"
-        "jasmine-jquery.js"
-        "jasmine-jquery-overrides.js"
-        "jasminerice.js"
-        "fixtures/**/*"
-        "spec.js"].map (f) -> "dist/#{f}")
-      .pipe(gulp_jasmine())
-      # Creating the reports after tests runned
+      gulp.src("app/spec/spec_runner.html")
+        .pipe(gulp.dest("dist"))
+        gulp.src("dist/spec_runner.html")
+      .pipe(runner())
       .pipe(istanbul.writeReports())
+        
 
     gulp.src("coverage/**/*")
     .pipe(gulp.dest("dist/coverage"))

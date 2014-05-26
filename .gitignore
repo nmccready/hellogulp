@@ -13,6 +13,7 @@ app/components
 /spec/coverage
 *.iml
 /bower_components
+/app/components
 *.xml
 /dist
 /coverage
