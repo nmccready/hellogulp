@@ -1,5 +1,5 @@
 istanbul = require('gulp-istanbul')
-gulp_jasmine = require('gulp-jasmine')
+debug = require('gulp-debug')
 
 module.exports = (gulp, log, concat, size, minify, rename, jshint, coffee,
 coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
@@ -43,21 +43,22 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
   log "#{bang}End:Spec dependencies#{bang}"
 
   gulp.task runSpecs, dependencies, ->
-    gulp.src("app/spec/spec_runner.html")
-    .pipe(gulp.dest("dist"))
-    gulp.src("dist/spec_runner.html")
+    gulp.src("dist/spec.js")
     .pipe(runner())
+    .on 'error', (err) ->
+      # Make sure failed tests cause gulp to exit non-zero
+      throw err
 
   gulp.task "spec_cover", dependencies, ->
     # Covering files
-    gulp.src("dist/all.js")
+    gulp.src(["dist/all.js"])
     .pipe(istanbul()).on "finish", ->
-      gulp.src("app/spec/spec_runner.html")
-        .pipe(gulp.dest("dist"))
-        gulp.src("dist/spec_runner.html")
-      .pipe(runner())
+      gulp.src("dist/spec.js")#["dist/spec_runner.html"])
+      # .pipe(runner())
+
       .pipe(istanbul.writeReports())
-        
+      .pipe(debug({verbose: true}))
+
 
     gulp.src("coverage/**/*")
     .pipe(gulp.dest("dist/coverage"))

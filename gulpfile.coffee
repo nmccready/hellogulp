@@ -110,12 +110,15 @@ gulp.task "open-build", ["watch"],->
 vendors = require('./gulpvendor.coffee')(gulp, gutil.log,
 concat, size, minify,rename, myClean)
 
-jasmine = require('./gulpjasmine.coffee')(gulp, gutil.log,
-concat, size, minify,rename, coffee, gulpif, myClean)
+# specRunner = require('./gulpjasmine.coffee')(gulp, gutil.log,
+# concat, size, minify,rename, coffee, gulpif, myClean)
+
+specRunner = require('./gulpkarma.coffee')(gulp, gutil.log,
+ concat, size, minify,rename, coffee, gulpif, myClean)
 
 spec = require('./gulpspec.coffee')(gulp, gutil.log,
 concat, size, minify,rename, jshint, coffee, coffeelint, gulpif
-_.values(jasmine.dependencyTasks), jasmine.runner, myClean)
+_.values(specRunner.dependencyTasks), specRunner.runner, myClean)
 
 
 #base tasks
