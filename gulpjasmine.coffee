@@ -1,8 +1,7 @@
 jasminePhantomJs = require('gulp-jasmine2-phantomjs')
 open         = require("gulp-open")
 
-module.exports = (gulp, log, concat, size, minify, rename, coffee, gulpif,
-myClean, bang = '!!!!!!!!!!') ->
+module.exports = (gulp, log, concat, size, minify, rename, coffee, gulpif, myClean, bang = '!!!!!!!!!!') ->
   log "#{bang}Jasmine Setup#{bang}"
   ###
   this file should be called by gulpfile.coffee
@@ -29,12 +28,16 @@ myClean, bang = '!!!!!!!!!!') ->
     v = "app/components/#{jasmine}/lib/jasmine-core/#{v}".js()
     log v
     v
-  bowerJasmineFiles.push "app/components/#{jasmine}/lib/jasmine-core/jasmine.css"
-  bowerJasmineFiles.push "app/components/#{jasmine2JUnit}/boot.js"
-  bowerJasmineFiles.push "app/components/#{jasmine}/lib/console/console.js"
-  #support fixtures
-  bowerJasmineFiles.push "app/components/jasmine-jquery/lib/jasmine-jquery.js"
-  bowerJasmineFiles.push "lib/jasmine*"
+  bowerJasmineFiles = bowerJasmineFiles.concat [
+    "app/components/#{jasmine}/lib/jasmine-core/jasmine.css"
+    "app/components/#{jasmine2JUnit}/boot.js"
+    "app/components/#{jasmine2JUnit}/#{jasmine2JUnit}.js"
+    "app/components/#{jasmine}/lib/console/console.js"
+    #support fixtures
+    "app/components/jasmine-jquery/lib/jasmine-jquery.js"
+    "lib/jasmine*"
+    "app/spec/spec_runner.html"
+  ]
 
   log "#{bang} BEGIN: TASK: #{dependencyTasks[jasmine]}#{bang}"
   gulp.task dependencyTasks[jasmine], ->
@@ -55,7 +58,9 @@ myClean, bang = '!!!!!!!!!!') ->
     .pipe(size())
     .pipe(gulp.dest("dist"))
 
-  gulp.task "jasmine", ["serve-build"],->
+  gulp.task jasmine, ["jasmine_build","sass","templates",
+  "vendor_develop","scripts","spec_build_jasmine",
+  "serve-build"],->
     options =
       url: "http://localhost:3000/jasmine.html"
       app: "Google Chrome" #osx , linux: google-chrome, windows: chrome
@@ -64,7 +69,7 @@ myClean, bang = '!!!!!!!!!!') ->
     .pipe(gulp.dest("dist"))
     .pipe(open("", options))
 
-  spec: "jasmine"
+  spec: jasmine
   dependencies: dependencies
   dependencyTasks: dependencyTasks
   runner: jasminePhantomJs

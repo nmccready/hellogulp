@@ -28,6 +28,7 @@ tasks:
     - this will allow you to debug the karma served javascript as well from:
       - [http://localhost:9876](http://localhost:9876)
       - [http://localhost:9876/base/dist/karma_html/chrome/index.html](http://localhost:9876/base/dist/karma_html/chrome/index.html)
+- ```spec_cover``` - opens to [http://localhost:3000/coverage/chrome/index.html](http://localhost:3000/coverage/chrome/index.html)
 - ```spec_jasmine```
   - runs jasmine command line only
   - generates xml report pass/fail

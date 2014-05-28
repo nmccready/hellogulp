@@ -1,8 +1,7 @@
 karma = require('gulp-karma')
 open         = require("gulp-open")
 
-module.exports = (gulp, log, concat, size, minify, rename, coffee, gulpif,
-myClean, bang = '!!!!!!!!!!') ->
+module.exports = (gulp, log, concat, size, minify, rename, coffee, gulpif, myClean, bang = '!!!!!!!!!!') ->
   log "#{bang}Karma Setup#{bang}"
   ###
   this file should be called by gulpfile.coffee
@@ -11,6 +10,7 @@ myClean, bang = '!!!!!!!!!!') ->
   runner = "karma"
   runnerBuild = runner + "_build"
   dependencies = []
+  coverageTask = "karma_report"
 
   log "#{bang} BEGIN: Karma Tasks#{bang}"
   dependencyTasks = {}
@@ -20,10 +20,17 @@ myClean, bang = '!!!!!!!!!!') ->
 
   log "#{bang} END: Karma Tasks: #{dependencyTasks}#{bang}"
 
-  spec: "karma"
+  gulp.task coverageTask, ["serve-build","spec"],->
+    options =
+      url: "http://localhost:3000/coverage/chrome/index.html"
+      app: "Google Chrome" #osx , linux: google-chrome, windows: chrome
+    gulp.src("dist/all.js")
+    .pipe(open("", options))
+
+  spec: runner
   dependencies: dependencies
   dependencyTasks: dependencyTasks
-
+  coverage: coverageTask
   runner: () ->
     karma
       configFile: 'karma.conf.coffee'

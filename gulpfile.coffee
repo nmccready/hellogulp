@@ -117,12 +117,10 @@ specRunner = require('./gulpkarma.coffee')(gulp, gutil.log,
  concat, size, minify,rename, coffee, gulpif, myClean)
 
 spec = require('./gulpspec.coffee')("dist/spec.js", gulp, gutil.log,
-concat, size, minify,rename, jshint, coffee, coffeelint, gulpif
-_.values(specRunner.dependencyTasks), specRunner.runner, myClean)
+concat, size, minify,rename, jshint, coffee, coffeelint, gulpif, specRunner, myClean)
 
 specJasmine = require('./gulpspec.coffee')("dist/spec_runner.html",gulp, gutil.log,
-concat, size, minify,rename, jshint, coffee, coffeelint, gulpif
-_.values(jasmineRunner.dependencyTasks), jasmineRunner.runner,myClean,"jasmine")
+concat, size, minify,rename, jshint, coffee, coffeelint, gulpif, jasmineRunner,myClean,"jasmine")
 
 #base tasks
 gulp.task "default", ["sass","templates","scripts", vendors.develop, "watch", spec.spec]
