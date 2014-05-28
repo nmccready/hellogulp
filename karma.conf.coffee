@@ -97,3 +97,6 @@ module.exports = (config) ->
       'karma-safari-launcher'
       'karma-coffee-preprocessor'
     ]
+
+
+  urlRoot: "base/dist/karma_html/chrome/index.html"

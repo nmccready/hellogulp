@@ -1,7 +1,6 @@
 describe 'app.views.Main', ->
   beforeEach ->
-    # json = loadJSONFixtures('main.json').main
-    json = fixture.load('dist/fixtures/main.json').json[0]
+    json = loadJSONFixtures('main.json')
     @testCtor = app.views.Main
     @subject = new @testCtor
       el: @fixture

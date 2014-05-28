@@ -1,7 +1,12 @@
+unless String.prototype.contains
+  String.prototype.contains = (toFind) ->
+    this.indexOf(toFind) > -1
+
 do ->
   window.isFullKarma= isFullKarma = window.__karma__
   window.isKarmaEnvBrowser = isKarmaEnvBrowser =
-    window.location.href.contains("base")#has the karma base path
+    #has the karma base path
+    window.location.href.contains("base")
 
   if isFullKarma
     #make html2js fixture loading behave like jasmine-jquery
@@ -10,12 +15,22 @@ do ->
       html = fixture[0].innerHTML
       $('body').append = html
     return
+  else
+    obj =
+      loadFixtures: window.loadFixtures
+    loadFixtures = _.clone(obj,true).loadFixtures
+    window.loadFixtures = (path) ->
+      if path.contains(".json")
+        propName = path.replace(".json","")
+        loadFixtures(path)[propName]
+      else
+        loadFixtures(path)
 
   if isKarmaEnvBrowser
-    window.jasmine?.getFixtures?().fixturesPath = 'fixtures'
-    window.jasmine?.getStyleFixtures?().fixturesPath = 'fixtures'
-    window.jasmine?.getJSONFixtures?().fixturesPath = 'fixtures/json'
+    fixurePath  ='/base/dist/fixtures'
   else
-    window.jasmine?.getFixtures?().fixturesPath = 'base/fixtures'
-    window.jasmine?.getStyleFixtures?().fixturesPath = 'base/fixtures'
-    window.jasmine?.getJSONFixtures?().fixturesPath = 'base/fixtures/json'
+    fixurePath  ='fixtures'
+
+  window.jasmine?.getFixtures?().fixturesPath = fixurePath
+  window.jasmine?.getStyleFixtures?().fixturesPath = fixurePath
+  window.jasmine?.getJSONFixtures?().fixturesPath = "#{fixurePath}/json"
