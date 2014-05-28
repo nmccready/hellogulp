@@ -16,8 +16,14 @@ module.exports = (config) ->
     preprocessors: {
       'dist/fixtures/*.html': ['html2js']
       'dist/fixtures/**/*.json': ['html2js']
-      '**/*.coffee': ['coffee']
+      # '**/*.coffee': ['coffee']
+      'dist/all.js': ['coverage']
     }
+
+    coverageReporter:
+      type : 'html',
+      dir : 'dist/coverage/'
+      middlePathDir: "chrome"
 
     # list of files / patterns to load in the browser
     files: [
@@ -47,7 +53,8 @@ module.exports = (config) ->
     # test results reporter to use
     # possible values: 'dots', 'progress'
     # available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress','dots', 'html', 'spec']
+    reporters: ['progress','dots', 'html', 'coverage']
+
     htmlReporter:
       middlePathDir: "chrome"
       outputDir: 'dist/karma_html',
@@ -85,11 +92,11 @@ module.exports = (config) ->
     singleRun: false
 
     plugins: [
+      'karma-coverage'
       'karma-jasmine'
       'karma-html2js-preprocessor'
       'karma-fixture'
       'karma-html-reporter'
-      'karma-spec-reporter'
       'karma-chrome-launcher'
       'karma-firefox-launcher'
       'karma-ie-launcher'
