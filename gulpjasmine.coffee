@@ -64,7 +64,7 @@ myClean, bang = '!!!!!!!!!!') ->
     .pipe(gulp.dest("dist"))
     .pipe(open("", options))
 
-  spec: jasmine
+  spec: "jasmine"
   dependencies: dependencies
   dependencyTasks: dependencyTasks
   runner: jasminePhantomJs

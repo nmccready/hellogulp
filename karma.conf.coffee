@@ -14,8 +14,8 @@ module.exports = (config) ->
     # preprocess matching files before serving them to the browser
     # available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.html': ['html2js']
-      '**/*.json': ['html2js']
+      'dist/fixtures/*.html': ['html2js']
+      'dist/fixtures/**/*.json': ['html2js']
       '**/*.coffee': ['coffee']
     }
 
@@ -33,6 +33,7 @@ module.exports = (config) ->
       {pattern:'dist/*.css', included: false}
       {pattern:'dist/boot.js', included: false}
       {pattern:'dist/console.js', included: false}
+      {pattern:'dist/karma_html/**', included: false}
       'dist/*.js'
       'dist/all.js'
       'dist/spec.js'
