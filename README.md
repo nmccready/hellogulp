@@ -17,7 +17,7 @@ Run gulp via coffeegulp, ```coffeegulp``` or shell script included ```cgulp```
 tasks:
 
 - ```serve``` or ```s```
-- ```clean```
+- ```clean``` removes the ```dist/``` (build) directory
 - ```vendor_develop```
 - ```vendor_prod_compile```
 - ```default``` or empty / no args
