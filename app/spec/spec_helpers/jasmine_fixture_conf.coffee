@@ -9,16 +9,22 @@ do ->
     window.location.href.contains("base")
 
   if isFullKarma
-    #make html2js fixture loading behave like jasmine-jquery
+    # make html2js fixture loading behave like jasmine-jquery
     unless window.__html__
       error = "HTML2JS was not loaded!!!"
       console.error error
       throw error
       return
-    window.loadFixtures = (path) ->
-      fixture.load("container.html")
-      html = fixture[0].innerHTML
-      $('body').append = html
+    loadFix = (path, htmlPath = "outerHTML") ->
+      f = fixture.load(path)
+      if htmlPath then f[0][htmlPath] else f[0]
+
+    window.loadFixtures = (path, htmlPath = "outerHTML") ->
+      html = loadFix path, htmlPath
+      $('body').append html
+
+    window.loadJSONFixtures = (path, htmlPath = "outerHTML") ->
+      loadFix "json/#{path}", false
     return
   else
     obj =

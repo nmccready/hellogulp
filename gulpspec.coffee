@@ -35,7 +35,7 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
     .pipe(size( title:'spec.js'))
     .pipe(gulp.dest("dist/fixtures"))
 
-  dependencies = if dependencyTasks? then [buildOurSpecs].concat(dependencyTasks) else [buildOurSpecs]
+  dependencies = if dependencyTasks? then [buildOurSpecs,"scripts"].concat(dependencyTasks) else [buildOurSpecs,"scripts"]
 
   log "#{bang}BEGIN:Spec dependencies#{bang}"
   dependencies.forEach (d)->
@@ -43,7 +43,7 @@ coffeelint, gulpif, dependencyTasks, runner, myClean, bang = '!!!!!!!!!!') ->
   log "#{bang}End:Spec dependencies#{bang}"
 
   gulp.task runSpecs, dependencies, ->
-    gulp.src("dist/spec.js")
+    gulp.src(['dist/spec.js'])
     .pipe(runner())
     .on 'error', (err) ->
       # Make sure failed tests cause gulp to exit non-zero

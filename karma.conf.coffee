@@ -21,12 +21,12 @@ module.exports = (config) ->
 
     # list of files / patterns to load in the browser
     files: [
+      'dist/fixtures/*.html'
+      'dist/fixtures/json/*.json'
       "app/spec/karma_init.js"
       'dist/vendor_develop.js'
       # 'dist/jasmine-jquery.js'
       # 'dist/jasminerice.js'
-      'dist/**/*.html'
-      'dist/**/*.json'
       {pattern:'dist/**/*.css', included: false}
       'dist/templates.js'
       {pattern:'dist/jasmine*.js', included: false}
@@ -36,6 +36,7 @@ module.exports = (config) ->
       'dist/*.js'
       'dist/all.js'
       'dist/spec.js'
+      'dist/**/*.html'
     ]
 
     # list of files to exclude
@@ -66,7 +67,7 @@ module.exports = (config) ->
     # - config.LOG_WARN
     # - config.LOG_INFO
     # - config.LOG_DEBUG
-    logLevel: config.LOG_WARN
+    logLevel: config.LOG_INFO
 
 
     # enable / disable watching file and executing tests whenever any file changes
