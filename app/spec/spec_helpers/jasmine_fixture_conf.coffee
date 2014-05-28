@@ -10,6 +10,11 @@ do ->
 
   if isFullKarma
     #make html2js fixture loading behave like jasmine-jquery
+    unless window.__html__
+      error = "HTML2JS was not loaded!!!"
+      console.error error
+      throw error
+      return
     window.loadFixtures = (path) ->
       fixture.load("container.html")
       html = fixture[0].innerHTML

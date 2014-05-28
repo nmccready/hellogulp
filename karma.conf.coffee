@@ -15,8 +15,8 @@ module.exports = (config) ->
     # available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: [
       '**/*.coffee': ['coffee']
-      '**/*.html': ['html2js']
-      '**/*.json': ['html2js']
+      '**/*.html': 'html2js'
+      '**/*.json': 'html2js'
       '**/*.css': ['']
     ]
 
@@ -85,8 +85,8 @@ module.exports = (config) ->
 
     plugins: [
       'karma-jasmine'
-      'karma-fixture'
       'karma-html2js-preprocessor'
+      'karma-fixture'
       'karma-html-reporter'
       'karma-spec-reporter'
       'karma-chrome-launcher'
