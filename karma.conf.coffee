@@ -21,9 +21,10 @@ module.exports = (config) ->
     }
 
     coverageReporter:
-      type : 'html',
-      dir : 'dist/coverage/'
-      middlePathDir: "chrome"
+      reporters:[
+        { type : 'html', dir : 'dist/coverage/', middlePathDir: "chrome" }
+        { type : 'cobertura', dir : 'dist/coverage/', middlePathDir: "chrome" }
+      ]
 
     # list of files / patterns to load in the browser
     files: [
