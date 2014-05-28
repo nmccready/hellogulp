@@ -13,12 +13,12 @@ module.exports = (config) ->
 
     # preprocess matching files before serving them to the browser
     # available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: [
-      '**/*.coffee': ['coffee']
-      '**/*.html': 'html2js'
-      '**/*.json': 'html2js'
+    preprocessors: {
+      '**/*.html': ['html2js']
+      '**/*.json': ['html2js']
       '**/*.css': ['']
-    ]
+      '**/*.coffee': ['coffee']
+    }
 
     # list of files / patterns to load in the browser
     files: [
@@ -67,7 +67,7 @@ module.exports = (config) ->
     # - config.LOG_WARN
     # - config.LOG_INFO
     # - config.LOG_DEBUG
-    logLevel: config.LOG_DEBUG
+    logLevel: config.LOG_WARN
 
 
     # enable / disable watching file and executing tests whenever any file changes
