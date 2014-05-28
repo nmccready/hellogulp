@@ -17,6 +17,7 @@ module.exports = (config) ->
       '**/*.coffee': ['coffee']
       '**/*.html': ['html2js']
       '**/*.json': ['html2js']
+      '**/*.css': ['']
     ]
 
     # list of files / patterns to load in the browser
@@ -25,8 +26,15 @@ module.exports = (config) ->
       'dist/vendor_develop.js'
       # 'dist/jasmine-jquery.js'
       # 'dist/jasminerice.js'
-      {pattern:'dist/fixtures/**', included: false}
+      {pattern:'dist/**/*.html', included: false}
+      {pattern:'dist/**/*.json', included: false}
+      {pattern:'dist/**/*.css', included: false}
       'dist/templates.js'
+      {pattern:'dist/jasmine*.js', included: false}
+      {pattern:'dist/*.css', included: false}
+      {pattern:'dist/boot.js', included: false}
+      {pattern:'dist/console.js', included: false}
+      'dist/*.js'
       'dist/all.js'
       'dist/spec.js'
     ]
@@ -38,8 +46,11 @@ module.exports = (config) ->
     # test results reporter to use
     # possible values: 'dots', 'progress'
     # available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress','dots']
-
+    reporters: ['progress','dots', 'html', 'spec']
+    htmlReporter:
+      middlePathDir: "chrome"
+      outputDir: 'dist/karma_html',
+      templatePath: 'app/spec/karma_jasmine_runner.html'
 
     # web server port
     port: 9876
@@ -76,6 +87,8 @@ module.exports = (config) ->
       'karma-jasmine'
       'karma-fixture'
       'karma-html2js-preprocessor'
+      'karma-html-reporter'
+      'karma-spec-reporter'
       'karma-chrome-launcher'
       'karma-firefox-launcher'
       'karma-ie-launcher'
