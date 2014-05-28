@@ -16,7 +16,6 @@ module.exports = (config) ->
     preprocessors: {
       '**/*.html': ['html2js']
       '**/*.json': ['html2js']
-      '**/*.css': ['']
       '**/*.coffee': ['coffee']
     }
 
@@ -26,8 +25,8 @@ module.exports = (config) ->
       'dist/vendor_develop.js'
       # 'dist/jasmine-jquery.js'
       # 'dist/jasminerice.js'
-      {pattern:'dist/**/*.html', included: false}
-      {pattern:'dist/**/*.json', included: false}
+      'dist/**/*.html'
+      'dist/**/*.json'
       {pattern:'dist/**/*.css', included: false}
       'dist/templates.js'
       {pattern:'dist/jasmine*.js', included: false}
